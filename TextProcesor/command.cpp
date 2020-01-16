@@ -1,9 +1,9 @@
 #include "command.h"
  
-void Command::setDocument(std::shared_ptr<Document> _doc) {
-	doc.reset(_doc.get());
-	docData.reset(&doc->data());
-	docBuffer.reset(&doc->buffer());
+void Command::setDocument(Document* _doc) {
+	doc = _doc;
+	docData = &doc->data();
+	docBuffer = &doc->buffer();
 }
 
 void InsertCommand::Execute() {

@@ -22,9 +22,9 @@ int main() {
 		//throw FReadException();
 	}
 
-	std::shared_ptr<Document> doc(new Document);
+	std::unique_ptr<Document> doc(new Document);
 
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 
 	std::string cmdName;
 	

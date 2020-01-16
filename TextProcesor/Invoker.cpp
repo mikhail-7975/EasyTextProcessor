@@ -3,11 +3,11 @@
 
 Invoker::Invoker(Document* _doc)
 {
-	doc.reset(_doc);
+	doc = _doc;
 }
 
-Invoker::Invoker(std::shared_ptr<Document> _doc) {
-	doc.reset(_doc.get());
+Invoker::Invoker(std::unique_ptr<Document>& _doc) {
+	doc = _doc.get();
 }
 
 void Invoker::Do(const std::string& cmdName, std::istream& inpStream) {
@@ -27,15 +27,15 @@ void Invoker::Undo() {
 	if (DoneCommands.size() == 0) return;
 	/*command = */
 	DoneCommands.back()->unExecute();
-	DeletedCommand.emplace_back(DoneCommands.back().get());
+	DeletedCommand.emplace_back(DoneCommands.back().release());
 	DoneCommands.pop_back();
-	
+
 }
 
 void Invoker::Redo() {
 	if (DeletedCommand.size() == 0) return;
 	DeletedCommand.back()->Execute();
-	DoneCommands.emplace_back(DeletedCommand.back());
+	DoneCommands.emplace_back(DeletedCommand.back().release());
 	DeletedCommand.pop_back();
 }
 
