@@ -5,10 +5,10 @@ Invoker::Invoker(Document* _doc)
 {
 	doc = _doc;
 }
-
+/*
 Invoker::Invoker(std::unique_ptr<Document>& _doc) {
 	doc = _doc.get();
-}
+}*/
 
 void Invoker::Do(const std::string& cmdName, std::istream& inpStream) {
 	command = nullptr;

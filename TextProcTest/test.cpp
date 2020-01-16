@@ -18,7 +18,7 @@ TEST(InsertTest, emptyDoc) {
 
 TEST(InsertTest, notEmptyDoc) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp{ "\"111\" 0" };
 	inv.Do("insert", inp);
 	std::istringstream inp2{ "\"222\" 0" };
@@ -28,7 +28,7 @@ TEST(InsertTest, notEmptyDoc) {
 
 TEST(InsertTest, outOfDoc) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp{ "\"111\" 10" };
 	inv.Do("insert", inp);
 	EXPECT_EQ(doc->data(), "111");
@@ -36,7 +36,7 @@ TEST(InsertTest, outOfDoc) {
 
 TEST(DeleteTest, emptyDoc) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp{ "1 4" };
 	inv.Do("delete", inp);
 	EXPECT_EQ(doc->data(), "");
@@ -44,7 +44,7 @@ TEST(DeleteTest, emptyDoc) {
 
 TEST(DeleteTest, notEmptyDoc) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "0 2" };
@@ -54,7 +54,7 @@ TEST(DeleteTest, notEmptyDoc) {
 
 TEST(DeleteTest, swapIndexes) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "2 0" };
@@ -64,7 +64,7 @@ TEST(DeleteTest, swapIndexes) {
 
 TEST(DeleteTest, equalIndexes) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "0 0" };
@@ -74,7 +74,7 @@ TEST(DeleteTest, equalIndexes) {
 
 TEST(DeleteTest, outOfDocIndex) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "10 20" };
@@ -84,7 +84,7 @@ TEST(DeleteTest, outOfDocIndex) {
 
 TEST(CopyPasteTest, emptyDoc) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp{ "0 2" };
 	inv.Do("copy", inp);
 	EXPECT_EQ(doc->buffer(), "");
@@ -95,7 +95,7 @@ TEST(CopyPasteTest, emptyDoc) {
 
 TEST(CopyPasteTest, normalTest) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "0 2" };
@@ -108,7 +108,7 @@ TEST(CopyPasteTest, normalTest) {
 
 TEST(CopyPasteTest, outOfDocIndexes) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "-5 10" };
@@ -121,7 +121,7 @@ TEST(CopyPasteTest, outOfDocIndexes) {
 
 TEST(CopyPasteTest, swapIndexes) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "2 0" };
@@ -134,7 +134,7 @@ TEST(CopyPasteTest, swapIndexes) {
 
 TEST(CopyPasteTest, equalIndexes) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "3 3" };
@@ -147,13 +147,13 @@ TEST(CopyPasteTest, equalIndexes) {
 
 TEST(UndoTest, emptyDoc) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	EXPECT_NO_THROW(inv.Undo());
 }
 
 TEST(UndoTest, normalTest) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "0 2" };
@@ -168,13 +168,13 @@ TEST(UndoTest, normalTest) {
 
 TEST(RedoTest, emptyDoc) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	EXPECT_NO_THROW(inv.Redo());
 }
 
 TEST(RedoTest, noUndoTest) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "0 2" };
@@ -189,7 +189,7 @@ TEST(RedoTest, noUndoTest) {
 
 TEST(RedoTest, normalTest) {
 	std::unique_ptr<Document> doc(new Document);
-	Invoker inv(doc);
+	Invoker inv(doc.get());
 	std::istringstream inp2{ "\"222111\" 0" };
 	inv.Do("insert", inp2);
 	std::istringstream inp{ "0 2" };
