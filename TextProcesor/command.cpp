@@ -1,5 +1,5 @@
 #include "command.h"
-
+ 
 void Command::setDocument(std::shared_ptr<Document> _doc) {
 	doc.reset(_doc.get());
 	docData.reset(&doc->data());
