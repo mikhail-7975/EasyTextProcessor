@@ -7,49 +7,43 @@ void Command::setDocument(Document* _doc) {
 }
 
 void InsertCommand::Execute() {
-	if (idx1 <= docData->size())
-		docData->insert(idx1, str);
+	if (idx <= docData->size())
+		docData->insert(idx, str);
 	else
 		docData->insert(docData->size(), str);
 }
 
 void InsertCommand::unExecute() {
-	docData->erase(idx1, str.size());
+	docData->erase(idx, str.size());
 }
 
-void isCorrectIndex(int& idx1, int& idx2, size_t size) {
-	if (idx1 < 0) idx1 = 0;
-	if (idx1 > idx2) {
-		int c = idx2;
-		idx2 = idx1;
-		idx1 = c;
-	}
+void setIndexInDocRange(size_t& idx1, size_t& idx2, size_t size) {
 	if (idx1 > size) idx1 = size;
 	if (idx2 > size) idx2 = size;
 }
 
 void DeleteCommand::Execute() {
-	isCorrectIndex(idx1, idx2, docData->size());
-	delstr = docData->substr(idx1, idx2 - idx1 + 1);
-	docData->erase(idx1, idx2 - idx1 + 1);
+	setIndexInDocRange(leftIdx, rightIdx, docData->size());
+	deletedStr = docData->substr(leftIdx, rightIdx - leftIdx + 1);
+	docData->erase(leftIdx, rightIdx - leftIdx + 1);
 }
 
 void DeleteCommand::unExecute() {
-	docData->insert(idx1, delstr);
+	docData->insert(leftIdx, deletedStr);
 }
 
 void CopyCommand::Execute() {
 	std::string& _docBuffer = doc->buffer();
-	isCorrectIndex(idx1, idx2, docData->size());
-	_docBuffer = docData->substr(idx1, idx2 - idx1 + 1);
+	setIndexInDocRange(leftIdx, rightIdx, docData->size());
+	_docBuffer = docData->substr(leftIdx, rightIdx - leftIdx + 1);
 }
 
 void PasteCommand::Execute() {
-	if (idx1 < 0) idx1 = 0;
-	if (idx1 > docData->size()) idx1 = docData->size();
-	docData->insert(idx1, *docBuffer);
+	if (idx < 0) idx = 0;
+	if (idx > docData->size()) idx = docData->size();
+	docData->insert(idx, *docBuffer);
 }
 
 void PasteCommand::unExecute() {
-	docData->erase(idx1, idx1 + docBuffer->size());
+	docData->erase(idx, idx + docBuffer->size());
 }

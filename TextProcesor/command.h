@@ -16,38 +16,38 @@ public:
 };
 
 class InsertCommand final : public Command {
-	int idx1;
+	size_t idx;
 	std::string str;
 public:
-	InsertCommand(int _idx1, const std::string & _str) : idx1(_idx1), str(_str) {}
+	InsertCommand(size_t _idx1, const std::string & _str) : idx(_idx1), str(_str) {}
 	void Execute();
 	void unExecute();
 };
 
 class DeleteCommand final : public Command {
-	int idx1;
-	int idx2;
-	std::string delstr;
+	size_t leftIdx;
+	size_t rightIdx;
+	std::string deletedStr;
 public:
-	DeleteCommand(int _idx1, int _idx2) : idx1(_idx1), idx2(_idx2) {}
+	DeleteCommand(size_t _idx1, size_t _idx2) : leftIdx(_idx1), rightIdx(_idx2) {}
 	void Execute();
 	void unExecute();
 };
 
 class CopyCommand final : public Command {
-	int idx1;
-	int idx2;
+	size_t leftIdx;
+	size_t rightIdx;
 public:
-	CopyCommand(int _idx1, int _idx2) : idx1(_idx1), idx2(_idx2) {}
+	CopyCommand(size_t _idx1, size_t _idx2) : leftIdx(_idx1), rightIdx(_idx2) {}
 	void Execute();
 	void unExecute() {}
 };
 
 
 class PasteCommand final : public Command {
-	int idx1;
+	size_t idx;
 public:
-	PasteCommand(int _idx) : idx1(_idx) {}
+	PasteCommand(size_t _idx) : idx(_idx) {}
 	void Execute();
 	void unExecute();
 };
