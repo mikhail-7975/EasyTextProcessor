@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="command">
+      <UniqueIdentifier>{f1ee81ae-c928-4a59-9471-168a5d4a19cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="document">
+      <UniqueIdentifier>{4b657472-4a32-4d79-bc37-5b079cd26cb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="invoker">
+      <UniqueIdentifier>{c87224a5-e936-4e39-ac5a-f0cff33c0981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="parser">
+      <UniqueIdentifier>{5c3f585a-ad90-4160-9525-726aab3f3570}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="command.cpp">
+      <Filter>command</Filter>
+    </ClCompile>
+    <ClCompile Include="document.cpp">
+      <Filter>document</Filter>
+    </ClCompile>
+    <ClCompile Include="Invoker.cpp">
+      <Filter>invoker</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="cmdCreator.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="command.h">
+      <Filter>command</Filter>
+    </ClInclude>
+    <ClInclude Include="Invoker.h">
+      <Filter>invoker</Filter>
+    </ClInclude>
+    <ClInclude Include="document.h">
+      <Filter>document</Filter>
+    </ClInclude>
+    <ClInclude Include="cmdCreator.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

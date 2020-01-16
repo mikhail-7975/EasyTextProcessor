@@ -1,0 +1,11 @@
+insert "111" 0
+insert "222" 3
+delete 3 4
+copy 0 35
+paste 10
+undo
+undo
+undo
+redo
+redo
+redo

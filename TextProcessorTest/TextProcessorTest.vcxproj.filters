@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="test.cpp" />
+    <ClCompile Include="..\TextProcesor\command.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextProcesor\document.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextProcesor\Invoker.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextProcesor\cmdCreator.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\TextProcesor\command.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TextProcesor\document.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TextProcesor\Invoker.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TextProcesor\cmdCreator.h">
+      <Filter>files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="files">
+      <UniqueIdentifier>{4345146a-8f7f-438b-8e2e-9cf2e622473f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <Filter>files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
